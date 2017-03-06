@@ -12,6 +12,9 @@ def call(String mvnHome = null) {
   if (fileExists('walkmod.patch')) {
     sh 'rm walkmod.patch'
   }
+
+  echo "${mvnHome}/bin/mvn walkmod:patch"
+  
   sh "${mvnHome}/bin/mvn walkmod:patch"
   return fileExists('walkmod.patch')
 
