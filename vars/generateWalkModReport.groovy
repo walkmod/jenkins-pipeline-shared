@@ -13,7 +13,7 @@ def call(String reportDir = 'target') {
 
   publishHTML target: [
     allowMissing: false,
-    alwaysLinkToLastBuild: false,
+    alwaysLinkToLastBuild: true,
     keepAll: true,
     reportDir: reportDir,
     reportFiles: "$ws/walkmod.html",
