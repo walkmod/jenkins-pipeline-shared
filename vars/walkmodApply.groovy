@@ -19,7 +19,7 @@ def call(boolean validatePatch = false, String reportDir = 'target', String bran
             sh "${mvnHome}/bin/mvn -DskipWalkmod test"
         }
 
-        pushWalkModPatch branch = "$branch"
+        pushWalkModPatch branch : branch
     }
 
 
