@@ -1,0 +1,5 @@
+<strong>hasPendingPatch(String mvnHome = null)</strong>
+
+<p>
+    Checks if there is a pending WalkMod patch to apply
+</p>

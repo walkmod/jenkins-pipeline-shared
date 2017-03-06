@@ -1,9 +1,9 @@
 #!/usr/bin/env groovy
 
 /**
- * Commits and pushes a patch based on walkmod
+ * Report a patch based on WalkMod
  */
-def call(String branch = 'master') {
+def call(String reportDir = 'target') {
 
   def functions = libraryResource 'walkmod/diffs/diff2html.sh'
   def ws = pwd tmp: true
@@ -15,18 +15,9 @@ def call(String branch = 'master') {
     allowMissing: false,
     alwaysLinkToLastBuild: false,
     keepAll: true,
-    reportDir: 'target',
+    reportDir: reportDir,
     reportFiles: '$ws/walkmod.html',
     reportName: 'WalkMod Report'
   ]
-
-  sh 'git apply walkmod.patch'
-  sh 'rm walkmod.patch'
-  sh 'git commit -a --amend -m "Fixing style violations"'
-  sh "git pull origin $branch"
-  sh "git push origin HEAD:$branch"
-  currentBuild.result = 'FAILURE'
-  error("Build failed by the lack of consistent coding style")
-
 
 }

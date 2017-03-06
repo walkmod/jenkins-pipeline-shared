@@ -1,0 +1,5 @@
+<strong>pushPatch(branch='master')</strong>
+
+<p>
+    Commits and pushes a WalkMod patch
+</p>

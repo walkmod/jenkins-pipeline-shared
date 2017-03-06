@@ -1,4 +1,4 @@
-<strong>applyPatch(branch='master’)</strong>
+<strong>applyPatch</strong>
 
 <p>
     Applies a walkmod patch into the repository
