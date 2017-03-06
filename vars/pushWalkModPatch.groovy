@@ -5,9 +5,9 @@
  */
 def call(String branch = 'master') {
 
-    sh 'git commit -a --amend -m "Fixing style violations"'
+    sh 'git commit -a --fixup'
 
-    sh "git pull --rebase origin $branch"
+    sh "git rebase -i --autosquash"
 
     sh "git push origin HEAD:$branch"
 
