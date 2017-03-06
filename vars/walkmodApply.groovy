@@ -14,11 +14,11 @@ def call(body) {
     def validatePatch = config.validatePatch?:false
     def reportDir = config.reportDir?:'target'
     def branch = config.branch?:'master'
-    def mvnHome = config.mvnHome
+    def mvnHomeDir = config.mvnHomeDir
     def alwaysFailOnPatch = config.alwaysFailOnPatch?:false
 
     echo "Checking if there are WalkMod changes to apply"
-    if (hasWalkModPatch(mvnHome)){
+    if (hasWalkModPatch(mvnHomeDir)){
 
         echo "Generating WalkMod report"
         generateWalkModReport reportDir
@@ -37,9 +37,9 @@ def call(body) {
             echo "Applying the generated patch by WalkMod"
             applyWalkModPatch
 
-            if (mvnHome != null) {
+            if (mvnHomeDir != null) {
                 echo "Running tests to see if patches work"
-                sh "${mvnHome}/bin/mvn -DskipWalkmod test"
+                sh "${mvnHomeDir}/bin/mvn -DskipWalkmod test"
             }
 
             echo "Pushing WalkMod changes"
