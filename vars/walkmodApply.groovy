@@ -16,7 +16,7 @@ def call(boolean validatePatch = false, String reportDir = 'target', String bran
         applyWalkModPatch
 
         if(mvnHome != null) {
-            sh "${mvnHome}/bin/mvn -DskipWalkmod package"
+            sh "${mvnHome}/bin/mvn -DskipWalkmod test"
         }
 
         pushWalkModPatch branch = "$branch"
