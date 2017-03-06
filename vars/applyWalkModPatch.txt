@@ -1,4 +1,4 @@
-<strong>applyPatch</strong>
+<strong>applyWalkModPatch</strong>
 
 <p>
     Applies a walkmod patch into the repository
