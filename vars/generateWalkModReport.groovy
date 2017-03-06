@@ -11,10 +11,8 @@ def call(String reportDir = 'target') {
   sh "chmod u+x $ws/diff2html.sh"
   sh "cat walkmod.patch | $ws/diff2html.sh > $reportDir/walkmod.html"
 
-  def currentDir = pwd
-  def reportFile = new File(currentDir, "$reportDir/walkmod.html")
-  echo reportFile.toURI().toString()
-
+  sh "cat.walkmod.patch"
+  
   publishHTML target: [
     allowMissing: false,
     alwaysLinkToLastBuild: true,
