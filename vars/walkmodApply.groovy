@@ -15,21 +15,29 @@ def call(body) {
     def branch = config.branch?:'master'
     def mvnHome = config.mvnHome
 
+    echo "Checking if there are WalkMod changes to apply"
     if (hasWalkModPatch(mvnHome)){
 
         if (validatePatch) {
             input "Does the patch look ok?"
         }
 
+        echo "Generating WalkMod report"
         generateWalkModReport reportDir
 
+        echo "Applying the generated patch by WalkMod"
         applyWalkModPatch
 
         if(mvnHome != null) {
+            echo "Running tests to see if patches work"
             sh "${mvnHome}/bin/mvn -DskipWalkmod test"
         }
 
+        echo "Pushing WalkMod changes"
         pushWalkModPatch branch
+
+    }else{
+        echo "There are not coding style violations"
     }
 
 
