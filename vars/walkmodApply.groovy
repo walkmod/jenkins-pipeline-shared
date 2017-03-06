@@ -35,7 +35,7 @@ def call(body) {
             }
 
             echo "Applying the generated patch by WalkMod"
-            applyWalkModPatch
+            applyWalkModPatch()
 
             if (mvnHomeDir != null) {
                 echo "Running tests to see if patches work"
