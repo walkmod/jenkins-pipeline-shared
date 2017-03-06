@@ -10,8 +10,10 @@ def call(String reportDir = 'target') {
   writeFile file: "$ws/diff2html.sh", text: functions
   sh "chmod u+x $ws/diff2html.sh"
   sh "cat walkmod.patch | $ws/diff2html.sh > $reportDir/walkmod.html"
-  
-  echo "$reportDir/walkmod.html"
+
+  def currentDir = pwd
+  def reportFile = new File(currentDir, "$reportDir/walkmod.html")
+  echo reportFile.toURI()
 
   publishHTML target: [
     allowMissing: false,
