@@ -24,7 +24,7 @@ def call(body) {
         generateWalkModReport reportDir
 
         if(alwaysFailOnPatch){
-            sh 'rm walkmod.patch'
+
             currentBuild.result = 'FAILURE'
             error("Build failed by the lack of consistent coding style")
 
