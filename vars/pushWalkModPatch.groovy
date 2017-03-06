@@ -5,9 +5,10 @@
  */
 def call(String branch = 'master') {
 
+    sh "git pull origin $branch"
 
     sh 'git commit -a --amend -m "Fixing style violations"'
-    sh "git pull origin $branch"
+
     sh "git push origin HEAD:$branch"
 
 
