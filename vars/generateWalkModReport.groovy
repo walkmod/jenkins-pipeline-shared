@@ -11,8 +11,8 @@ def call(String reportDir = 'target') {
   sh "chmod u+x $ws/diff2html.sh"
   sh "cat walkmod.patch | $ws/diff2html.sh > $reportDir/walkmod.html"
 
-  sh "cat.walkmod.patch"
-  
+  sh "cat walkmod.patch"
+
   publishHTML target: [
     allowMissing: false,
     alwaysLinkToLastBuild: true,
