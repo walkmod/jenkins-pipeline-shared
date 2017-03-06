@@ -9,6 +9,4 @@ def call() {
 
   echo 'walkmod.patch applied'
 
-  sh 'rm walkmod.patch'
-
 }
