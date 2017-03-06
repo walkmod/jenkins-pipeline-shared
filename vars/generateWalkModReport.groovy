@@ -16,7 +16,7 @@ def call(String reportDir = 'target') {
     alwaysLinkToLastBuild: false,
     keepAll: true,
     reportDir: reportDir,
-    reportFiles: '$ws/walkmod.html',
+    reportFiles: "$ws/walkmod.html",
     reportName: 'WalkMod Report'
   ]
 
