@@ -17,6 +17,7 @@ def call(body) {
     def mvnHomeDir = config.mvnHomeDir
     def alwaysFailOnPatch = config.alwaysFailOnPatch?:false
 
+
     echo "Checking if there are WalkMod changes to apply"
     if (hasWalkModPatch(mvnHomeDir)){
 

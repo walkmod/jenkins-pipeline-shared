@@ -12,14 +12,17 @@ def call(String reportDir = 'target') {
   sh "cat walkmod.patch | $ws/diff2html.sh > $reportDir/walkmod.html"
 
   sh "cat walkmod.patch"
-
-  publishHTML target: [
-    allowMissing: false,
-    alwaysLinkToLastBuild: true,
-    keepAll: true,
-    reportDir: reportDir,
-    reportFiles: "walkmod.html",
-    reportName: 'WalkMod Report'
-  ]
+  try {
+    publishHTML target: [
+            allowMissing         : false,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : reportDir,
+            reportFiles          : "walkmod.html",
+            reportName           : 'WalkMod Report'
+    ]
+  }catch(error){
+    echo "WARNING: Install HTML Publisher Plugin to archive the reports"
+  }
 
 }
