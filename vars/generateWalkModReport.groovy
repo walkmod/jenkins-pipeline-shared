@@ -21,7 +21,7 @@ def call(String reportDir = 'target') {
             reportFiles          : "walkmod.html",
             reportName           : 'WalkMod Report'
     ]
-  }catch(error){
+  }catch(java.lang.NoSuchMethodError error){
     echo "WARNING: Install HTML Publisher Plugin to archive the reports"
   }
 
