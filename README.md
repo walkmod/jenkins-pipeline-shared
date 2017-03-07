@@ -6,7 +6,7 @@ An example of pipeline that integrates this library is:
 
 ```
 #!groovy
-@Library('walkmod') _ 
+@Library('github.com/walkmod/jenkins-pipeline-shared@master') _
 
 node {
    def mvnHome
