@@ -9,6 +9,5 @@
     validatePatch = false,
     reportDir = 'target',
     branch = 'master',
-    mvnHomeDir = null,
     alwaysFailOnPatch =false
 </p>

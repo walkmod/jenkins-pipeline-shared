@@ -3,19 +3,16 @@
 /**
  * Checks if there is a pending WalkMod patch to apply
  */
-def call(String mvnHome = null) {
+def call() {
 
-  if(mvnHome == null){
-    return false;
-  }
 
   if (fileExists('walkmod.patch')) {
     sh 'rm walkmod.patch'
   }
 
-  echo "${mvnHome}/bin/mvn walkmod:patch"
+  echo "mvn walkmod:patch"
 
-  sh "${mvnHome}/bin/mvn walkmod:patch"
+  sh "mvn walkmod:patch"
   return fileExists('walkmod.patch')
 
 }
