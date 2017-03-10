@@ -7,9 +7,11 @@
 def call(body) {
     // evaluate the body block, and collect configuration into the object
     def config = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = config
-    body()
+    if (body != null) {
+        body.resolveStrategy = Closure.DELEGATE_FIRST
+        body.delegate = config
+        body()
+    }
 
     def validatePatch = config.validatePatch?:false
     def reportDir = config.reportDir?:'target'
