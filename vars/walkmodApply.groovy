@@ -45,7 +45,7 @@ def call(Map config = [:]) {
             applyWalkModPatch()
 
             echo "Running tests to see if patches work"
-            sh "mvn -DskipWalkmod test"
+            sh "mvn test"
 
             echo "Pushing WalkMod changes"
             pushWalkModPatch branch
