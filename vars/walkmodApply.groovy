@@ -40,7 +40,7 @@ def call(Map config = [:]) {
             applyWalkModPatch()
 
             echo "Running tests to see if patches work"
-            sh "mvn test"
+            sh "gradle test"
 
             echo "Pushing WalkMod changes"
             pushWalkModPatch branch

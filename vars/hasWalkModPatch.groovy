@@ -10,9 +10,9 @@ def call() {
     sh 'rm walkmod.patch'
   }
 
-  echo "mvn walkmod:patch"
+  echo "gradle walkmodPatch"
 
-  sh "mvn walkmod:patch"
+  sh "gradle walkmodPatch"
   return fileExists('walkmod.patch')
 
 }
