@@ -6,26 +6,36 @@ An example of pipeline that integrates this library is:
 
 ```
 #!groovy
-@Library('github.com/walkmod/jenkins-pipeline-shared@master') _
+@Library('github.com/walkmod/jenkins-pipeline-shared@maven') _
 
-node {
-   def mvnHome
-   stage('Preparation') { // for display purposes
-      // Get some code from a GitHub repository
-      git 'REPLACE_BY_YOUR_GIT_URL'
-      mvnHome = tool 'M3'
-   }   
+pipeline {
+   agent any
+
+   stages {
+
    stage ('Fixing Release'){
-      walkmodApply { 
-        mvnHomeDir = "${mvnHome}"
-      }        
-   }   
+      steps {
+         walkmodApply(validatePatch: true,
+         branch: env.BRANCH_NAME,
+         alwaysApply: true,
+         alwaysFail: true)
+      }
+   }
+   stage ('Check conventions'){
+      steps {
+         sh "mvn pmd:check"
+      }
+   }
    stage('Build') {
-      sh "${mvnHome}/bin/mvn -DskipWalkmod package"     
+      steps {
+         sh "mvn package"
+      }
    }
    stage('Results') {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archive 'target/*.jar'
+      steps {
+          archive 'target/*.jar'
+      }
    }
-
+   }
 }
+
