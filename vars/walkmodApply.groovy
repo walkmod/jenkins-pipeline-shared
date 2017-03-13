@@ -21,8 +21,8 @@ def call(Map config = [:]) {
     def validatePatch = config.validatePatch?:false
     def reportDir = config.reportDir?:'target'
     def branch = config.branch?:'master'
-    def alwaysFailOnPatch = config.alwaysFailOnPatch?:false
-
+    def alwaysApply = config.alwaysApply?:true
+    def alwaysFail = config.alwaysFail?:true
 
     echo "Checking if there are WalkMod changes to apply"
     if (hasWalkModPatch()){
@@ -30,12 +30,7 @@ def call(Map config = [:]) {
         echo "Generating WalkMod report"
         generateWalkModReport reportDir
 
-        if(alwaysFailOnPatch){
-
-            currentBuild.result = 'FAILURE'
-            error("Build failed by the lack of consistent coding style")
-
-        }else {
+        if(alwaysApply){
 
             if (validatePatch) {
                 input "Does the patch look ok?"
@@ -49,6 +44,10 @@ def call(Map config = [:]) {
 
             echo "Pushing WalkMod changes"
             pushWalkModPatch branch
+        }
+        if (alwaysFail) {
+            currentBuild.result = 'FAILURE'
+            error("Build failed by the lack of consistent coding style")
         }
 
     }else{

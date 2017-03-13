@@ -9,5 +9,6 @@
     validatePatch = false,
     reportDir = 'target',
     branch = 'master',
-    alwaysFailOnPatch =false
+    alwaysApply = true
+    alwaysFail = true
 </p>
